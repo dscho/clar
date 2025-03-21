@@ -18,6 +18,10 @@
 # define CLAR_MAX_PATH PATH_MAX
 #endif
 
+#if defined(_WIN32)
+#define localtime_r(timer, buf) (localtime_s(buf, timer) == 0 ? buf : NULL)
+#endif
+
 #ifndef CLAR_SELFTEST
 # define CLAR_CURRENT_FILE __FILE__
 # define CLAR_CURRENT_LINE __LINE__
